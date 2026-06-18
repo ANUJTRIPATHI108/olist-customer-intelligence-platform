@@ -1,2 +1,7 @@
 # olist-customer-intelligence-platform
-🚀 Olist Customer Intelligence Platform – Revenue Analytics, RFM Segmentation, Predictive Modeling &amp; Interactive Power BI Dashboards | Python • SQL • Machine Learning • Power BI
+## 🛠 Tech Stack
+
+PostgreSQL • SQL • Python • Pandas • NumPy • Matplotlib • Seaborn • Scikit-Learn • Power BI • Git • GitHub
+
+Engineered a production-style Customer Intelligence & Revenue Analytics Platform using PostgreSQL, Python, Machine Learning, and Power BI to analyze 100K+ e-commerce orders, perform customer segmentation, predict business outcomes, and create interactive dashboards for strategic decision-making.
+
