@@ -1,35 +1,58 @@
 # 🛒 Olist Customer Intelligence & Revenue Analytics Platform
 ## 🛠 Tech Stack
 
-PostgreSQL • SQL • Python • Pandas • NumPy • Matplotlib • Seaborn • Scikit-Learn • Power BI • Git • GitHub
+Database: PostgreSQL 18, pgAdmin 4
 
-Engineered a production-style Customer Intelligence & Revenue Analytics Platform using PostgreSQL, Python, Machine Learning, and Power BI to analyze 100K+ e-commerce orders, perform customer segmentation, predict business outcomes, and create interactive dashboards for strategic decision-making.
+Programming: Python, SQL
+
+Libraries: Pandas, NumPy, Matplotlib, Seaborn, Scikit-Learn, SQLAlchemy
+
+Business Intelligence: Power BI
+
+Tools: Git, GitHub, Jupyter Lab, Anaconda
+
+End-to-end analytics pipeline — from raw e-commerce CSVs to predictive ML models and interactive Power BI dashboards — built to surface customer behaviour patterns, delivery performance issues, and revenue growth opportunities across 100K+ orders.
 
 🔄 Project Architecture
 
-Raw CSV Files (9 datasets, 500K+ rows)
-            ↓
-PostgreSQL Database (9-table relational schema with PKs, FKs, composite keys)
-            ↓
-SQL Analysis (C1–C13: Revenue, Delivery, RFM, CLV, Churn, Cohort...)
-            ↓
-Python — pandas + NumPy (data extraction, cleaning, feature engineering)
-            ↓
-EDA & Visualisations (10 charts — matplotlib + seaborn)
-            ↓
-RFM Analysis (7 customer segments)
-            ↓
-Machine Learning Models (Classification · Clustering · Regression)
-            ↓
-Power BI Dashboards (3 interactive dashboards — Revenue · Customer · Delivery)
-            ↓
+Raw CSV Files (9 Datasets)
+
+⬇
+
+PostgreSQL Data Warehouse
+
+⬇
+
+SQL Analytics (Revenue, RFM, Cohort, CLV, Churn)
+
+⬇
+
+Python Data Processing & EDA
+
+⬇
+
+Machine Learning Models
+
+⬇
+
+Power BI Dashboards
+
+⬇
+
 Business Insights & Recommendations
 
 
-📊 Business Headline Numbers
-
-MetricValueTotal Orders99,441Total Unique Customers96,096Total RevenueR$ 13.6M+Average Order Value (AOV)R$ 137Delivered Successfully~97%Average Review Score4.09 / 5Repeat Customer Rate2.97%Total Sellers3,095Total Products32,951
-
+📈 Business Metrics
+Metric	Value
+Total Orders	99,441
+Unique Customers	96,096
+Total Revenue	R$ 13.6M+
+Average Order Value	R$ 137
+Delivered Orders	~97%
+Average Review Score	4.09 / 5
+Repeat Customer Rate	2.97%
+Total Sellers	3,095
+Total Products	32,951
 
 🗂️ Dataset
 
@@ -48,94 +71,58 @@ Designed and built a 9-table relational schema in PostgreSQL with proper primary
 
 All 9 tables with primary keys (🔑), foreign key relationships, and column data types. geolocation stands alone — no FK by design since zip codes repeat with different lat/lng coordinates.
 
+🔍 SQL Analytics 13 Business Areas
 
+Performed advanced business analysis using PostgreSQL:
 
-Table Creation Order (parent before child):
-
-#TableDepends On1customers—2sellers—3product_category_name_translation—4productscategory_translation5geolocation—6orderscustomers7order_paymentsorders8order_reviewsorders9order_itemsorders + products + sellers
-
-
-🔍 SQL Analysis — 13 Business Areas
-
-All analysis performed in PostgreSQL. Key techniques used:
-
-
-Window functions — LAG(), RANK(), DENSE_RANK(), SUM() OVER()
-CTEs (Common Table Expressions) for multi-step logic
-Composite primary keys and FK constraint management
-CASE WHEN pattern for conditional aggregations
-Subqueries and anti-joins for data quality checks
-
-
-SectionAnalysisC1Revenue Analysis — monthly trends, AOV, peak hours, quarterly breakdownC2Delivery Analysis — on-time %, delay days, performance by stateC3Customer Analysis — repeat rate, unique vs total customersC4Seller Analysis — Bronze / Silver / Gold / Platinum tiersC5Product & Category Analysis — top categories, null handlingC6Payment Analysis — method breakdown, installment distributionC7Review & Satisfaction Analysis — score distribution, comment rateC8Delay vs Review Score — correlation between lateness and satisfactionC9RFM Analysis — Recency, Frequency, Monetary segmentationC10Cohort Analysis — monthly retention snapshotC11Month-over-Month Revenue Growth using LAG()C12Customer Lifetime Value (CLV) — tiers and averagesC13Churn Risk Analysis — Lost / High Risk / Medium Risk / Active
-
+Area	            Analysis
+Revenue Analytics	Monthly revenue, AOV, growth trends
+Delivery Analytics	Delays, SLA performance, state-level analysis
+Customer Analytics	Repeat customers, retention metrics
+Seller Analytics	Seller tier classification
+Product Analytics	Category performance
+Payment Analytics	Payment method trends
+Review Analytics	Satisfaction analysis
+RFM Analysis	Customer segmentation
+Cohort Analysis	Retention tracking
+CLV Analysis	Customer lifetime value
+Churn Analysis	Risk categorization
+Techniques Used
+Window Functions (LAG, RANK, DENSE_RANK)
+Common Table Expressions (CTEs)
+Subqueries & Joins
+Conditional Aggregations
+Composite Primary Keys
+Foreign Key Constraints
 
 🐍 Python Notebooks
 
 Notebook 1 — Data Extraction & Validation
-
-
-Connected Python to PostgreSQL using SQLAlchemy + psycopg2
-Loaded all 9 tables into pandas DataFrames
-Fixed timestamp columns and performed feature engineering
-Created: delivery_delay_days, actual_delivery_days, is_late, purchase_hour, purchase_dow
-
+Connected to PostgreSQL via SQLAlchemy + psycopg2. Loaded all 9 tables, fixed timestamps, and engineered features: delivery_delay_days, actual_delivery_days, is_late, purchase_hour, purchase_dow.
 
 Notebook 2 — EDA & Visualisations (10 Charts)
-
-
-Order status distribution
-Monthly revenue trend (line chart with fill)
-Top 10 categories by revenue
-Payment type breakdown (pie + bar)
-Review score distribution
-Orders by hour heatmap (day of week × hour)
-Delivery delay vs review score (boxplot)
-Top 10 states by revenue
-Repeat vs one-time customers
-Monthly order volume + month-over-month category trend
-
+Order status distribution · monthly revenue trend · top 10 categories · payment breakdown · review scores · orders-by-hour heatmap · delay vs review boxplot · top states by revenue · repeat vs one-time customers · monthly order volume.
 
 Notebook 3 — RFM Analysis
+Recency, Frequency, Monetary scored 1–4 via quartile ranking per customer. Assigned 7 segments: Champions · Loyal Customers · Potential Loyalists · New Customers · At Risk · Need Attention · Lost Customers. Visualised segment counts, average revenue, R/F/M distributions, and recency vs monetary scatter.
+
+Notebook 4 — Machine Learning
+See ML Models section below.
 
 
-Calculated Recency, Frequency, Monetary per unique customer
-Scored each dimension 1–4 using quartile ranking
-Assigned 7 customer segments: Champions, Loyal Customers, Potential Loyalists, New Customers, At Risk, Lost Customers, Need Attention
-Visualised: segment count, average revenue per segment, R/F/M distributions, recency vs monetary scatter
+🤖 Machine Learning Models
 
+Model 1 — Random Forest Classifier · Late Delivery Prediction
 
-Notebook 4 — Machine Learning (3 Models)
+TargetBinary — will this order arrive late?FeaturesItem count · total price · avg freight · customer state · actual delivery daysAccuracy96.44%Weighted F10.963Late recall67% · On-time precision 0.98 · Late precision 0.77OutputConfusion matrix · feature importance chart
 
-Model 1 — Random Forest Classifier (Late Delivery Prediction)
+Model 2 — K-Means Clustering · Customer Segmentation
 
+InputRFM values scaled with StandardScalerK selectionElbow MethodVisualisationPCA (2 components)ResultClearly separated clusters — avg monetary R$141.62 in Mid Value segmentOutputPCA scatter plot · cluster revenue bar chart
 
-Target: predict whether an order will arrive late (binary classification)
-Features: item count, total price, avg freight, customer state, actual delivery days
-Result: 96.44% accuracy · Weighted F1-score 0.963 · Late delivery recall 67%
-On-time precision 0.98, Late delivery precision 0.77
-Output: confusion matrix, feature importance chart
+Model 3 — Linear Regression · Review Score Prediction
 
-
-Model 2 — K-Means Clustering (Customer Segmentation)
-
-
-Input: RFM values (recency, frequency, monetary) scaled with StandardScaler
-Used Elbow Method to determine optimal K
-Visualised clusters using PCA (2 components)
-Result: Clusters clearly separated by spending behaviour — avg monetary R$141.62 in Mid Value segment
-Output: PCA scatter plot, cluster revenue bar chart
-
-
-Model 3 — Linear Regression (Review Score Prediction)
-
-
-Target: predict customer review score (1–5 scale)
-Features: actual delivery days, delivery delay, is_late flag, total price, item count
-Result: MAE 0.886 · R² 0.193
-Delivery delay has the strongest negative coefficient — confirming SQL finding that late orders tank scores
-Output: actual vs predicted scatter, coefficient impact chart
-
+TargetReview score (1–5 scale)FeaturesDelivery days · delay days · is_late · total price · item countMAE0.886R²0.193Key findingdelivery_delay_days is the strongest negative predictor — confirms the SQL C8 findingOutputActual vs predicted scatter · coefficient impact chart
 
 
 📊 Power BI Dashboards
@@ -146,33 +133,57 @@ Dashboard 1 — Revenue Analysis
 <img width="765" height="429" alt="image" src="https://github.com/user-attachments/assets/ee61ac6e-d6c2-4698-8d4b-af01130b6be3" />
 
 
-Tracks overall business performance and revenue drivers.
+Provides a comprehensive view of revenue performance, customer spending behavior, and category-level sales trends.
 
-VisualTypePurposeTotal RevenueKPI CardHeadline revenue figureTotal OrdersKPI CardOrder volume at a glanceAOV (Avg Order Value)KPI CardSpend efficiency metricMonthly Revenue TrendLine ChartSeasonality & growth over timeTop 10 Categories by RevenueBar ChartCategory performance rankingPayment Method DistributionDonut ChartCredit card vs Boleto vs othersRevenue by State / TimeColumn ChartGeographic & temporal breakdown
+Key Features
 
-Key finding surfaced: November revenue spike (Black Friday) is clearly visible; Health & Beauty leads all categories.
+Revenue, Orders, and Average Order Value (AOV) KPIs
+Monthly Revenue Trend Analysis
+Top Revenue-Generating Product Categories
+Payment Method Distribution
+Revenue Analysis by State and Time Period
+
+Business Insight
+
+Revenue peaks significantly during November (Black Friday season), highlighting the importance of inventory planning and marketing investments before peak demand periods. Health & Beauty emerged as the highest revenue-generating category.
 
 
 Dashboard 2 — Customer Intelligence
 <img width="759" height="425" alt="image" src="https://github.com/user-attachments/assets/304d098d-06ce-417e-bd06-53fbd5c41518" />
 
 
-Combines RFM segmentation, CLV, and K-Means cluster outputs into a single customer view.
+Combines RFM segmentation, Customer Lifetime Value (CLV), and K-Means clustering to provide a 360° customer view
 
-VisualTypePurposeTotal CustomersKPI CardPlatform customer base sizeAverage CLVKPI CardLifetime value per customerAvg RecencyKPI CardHow recently customers orderedAvg FrequencyKPI CardPurchase frequency metricAvg MonetaryKPI CardAverage spend per customerCustomer Segment DistributionBar ChartChampions vs At Risk vs Lost breakdownRevenue by Customer SegmentColumn ChartWhich segments drive the most revenueCustomer Cluster DistributionDonut ChartK-Means cluster proportionsTop 10 Customers by RevenueBar ChartHighest-value individual customers
+Key Features
 
-Key finding surfaced: Champions and Loyal Customers are a small group but drive disproportionate revenue — direct input for retention strategy.
+Customer Base & CLV KPIs
+Recency, Frequency, and Monetary Performance Metrics
+Customer Segment Distribution
+Revenue Contribution by Customer Segment
+Customer Cluster Analysis
+Top Revenue-Contributing Customers
 
+Business Insight
+
+Champion and Loyal customers represent a relatively small percentage of the customer base but contribute a disproportionately large share of total revenue, making them the highest-priority segment for retention initiatives.
 
 Dashboard 3 — Delivery & Operations Analytics
 <img width="761" height="434" alt="image" src="https://github.com/user-attachments/assets/62839c29-4a04-41f9-926f-0b42f0bc09f1" />
 
+Monitors operational efficiency, delivery performance, and their impact on customer satisfaction.
 
-Monitors logistics performance and its relationship with customer satisfaction.
+Key Features
 
-VisualTypePurposeAvg Delay DaysKPI CardMean delay across all ordersAvg Delivery DaysKPI CardEnd-to-end fulfilment timeDelivered OrdersKPI CardTotal successfully deliveredAvg Review ScoreKPI CardPlatform-wide satisfactionOrder Status DistributionDonut ChartDelivered vs cancelled vs othersMonthly Delivery PerformanceLine ChartDelay trends over timeTop 5 States by Delivery TimeBar ChartSlowest-delivery geographiesTop 10 States by Freight CostBar ChartHighest freight cost regions
+Delivery Performance KPIs
+Average Delay & Delivery Time Analysis
+Order Status Distribution
+Monthly Delivery Performance Trends
+State-wise Delivery Time Analysis
+Freight Cost Analysis by Region
 
-Key finding surfaced: Northern and northeastern states consistently show higher delay days and freight costs — directly correlating with the lower review scores seen in those regions.
+Business Insight
+
+Northern and Northeastern regions consistently experience longer delivery times and higher freight costs. These operational challenges directly correlate with lower customer review scores, indicating clear opportunities for logistics optimization.
 
 
 ⚠️ Challenges & Solutions
